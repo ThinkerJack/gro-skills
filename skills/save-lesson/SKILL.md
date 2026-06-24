@@ -1,6 +1,6 @@
 ---
 name: save-lesson
-description: "Use when 用户需要沉淀经验、记录教训、更新规则、复盘、避免重复踩坑；also use after non-trivial tasks, repeated corrections, failures, process gaps, or discoveries that should become durable context."
+description: "把重复失败、项目规则、领域语言和流程缺口沉淀成长期上下文或自动化。触发词:沉淀经验/记录教训/更新规则/复盘/避免重复踩坑/save lesson/capture learning/retrospective。Use after non-trivial tasks, repeated corrections, failures, process gaps, or discoveries that should become durable context."
 ---
 
 # 记经验 save-lesson

@@ -1,6 +1,6 @@
 ---
 name: find-proof
-description: "Use when 用户需要找证据、查资料、验证事实、看代码依据、调研、确认 claim；also use when decisions need evidence from local code, docs, tests, product data, web research, source materials, or external references."
+description: "找证据、查资料、验证事实、确认 claim,从代码/文档/测试/数据/网页/调研库取依据。触发词:找证据/查资料/验证事实/确认一下/有没有依据/调研/搜一下/find proof/evidence/research。Use when decisions need evidence from local code, docs, tests, product data, web research, source materials, or external references."
 ---
 
 # 找证据 find-proof

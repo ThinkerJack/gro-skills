@@ -1,6 +1,6 @@
 ---
 name: make-design
-description: "Use when 用户需要做设计、技术方案、架构方案、模块边界、数据流、取舍分析；also use when requirements are ready enough to discuss implementation approach, architecture, interfaces, risks, and tradeoffs before coding."
+description: "在写代码前做方案设计,明确模块边界、数据流、接口、风险和取舍。触发词:做设计/技术方案/架构方案/模块设计/数据流/方案取舍/make design/design solution/architecture。Use when requirements are ready enough to discuss implementation approach, architecture, interfaces, risks, and tradeoffs before coding."
 ---
 
 # 做设计 make-design

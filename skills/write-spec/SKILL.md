@@ -1,6 +1,6 @@
 ---
 name: write-spec
-description: "Use when 用户需要写规格、可执行规格、agent spec、实现说明、测试契约；also use when an approved design must become a self-contained spec that another AI agent can implement without reopening original PRD, research, or design sources."
+description: "把已认可设计写成自包含、可执行、可验证的 agent spec。触发词:写规格/可执行规格/agent spec/实现说明/测试契约/write spec/executable spec/implementation spec。Use when an approved design must become a self-contained spec that another AI agent can implement without reopening original PRD, research, or design sources."
 ---
 
 # 写规格 write-spec

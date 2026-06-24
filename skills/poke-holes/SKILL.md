@@ -1,6 +1,6 @@
 ---
 name: poke-holes
-description: "Use when 用户需要挑毛病、反驳、压力测试、识别风险、避免盲目赞同；also use when reviewing assumptions, plans, requirements, designs, technical choices, tradeoffs, or decisions before work begins."
+description: "对想法、需求、方案、计划或技术判断挑毛病,找风险、反例和隐藏假设。触发词:挑毛病/反驳/压力测试/挑战方案/别顺着我/识别风险/poke holes/challenge/pressure test。Use when reviewing assumptions, plans, requirements, designs, technical choices, tradeoffs, or decisions before work begins."
 ---
 
 # 挑毛病 poke-holes

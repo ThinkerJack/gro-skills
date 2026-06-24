@@ -1,6 +1,6 @@
 ---
 name: review-it
-description: "Use when 用户需要评审、review、检查 diff、准备交付、写 handoff、评估风险；also use when changes are ready for final review, handoff, commit or PR preparation, without embedding project-specific git workflow."
+description: "交付前评审 diff、风险、验证证据和交接说明。触发词:评审/review/检查 diff/准备交付/交接说明/风险评估/review it/final review/handoff。Use when changes are ready for final review, handoff, commit or PR preparation, without embedding project-specific git workflow."
 ---
 
 # 做评审 review-it

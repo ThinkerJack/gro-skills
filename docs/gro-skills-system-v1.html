@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gro Skills System v0.1</title>
+  <title>Gro Skills - AI Coding 双场景工作流</title>
   <style>
     :root {
       color-scheme: light;
-      --ink: #18201b;
-      --muted: #5d6b61;
-      --soft: #f4f1e8;
-      --paper: #fffdf6;
-      --line: #d9d0bd;
-      --leaf: #1f7a4d;
-      --leaf-deep: #135c3a;
-      --sun: #f0b84f;
-      --sky: #477a96;
-      --berry: #9c4657;
-      --shadow: 0 20px 60px rgba(34, 42, 34, 0.12);
+      --ink: #17211b;
+      --muted: #5d685f;
+      --paper: #fffdf7;
+      --soft: #f5f0e5;
+      --line: #d8cfbd;
+      --leaf: #1d7a4c;
+      --leaf-deep: #135a38;
+      --gold: #e2ad43;
+      --blue: #416f8c;
+      --rose: #9c4657;
+      --shadow: 0 18px 54px rgba(29, 42, 34, 0.12);
     }
 
     * {
@@ -32,27 +32,29 @@
       line-height: 1.58;
     }
 
+    a {
+      color: var(--leaf-deep);
+    }
+
     .page {
-      max-width: 1160px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 36px 24px 64px;
+      padding: 34px 24px 64px;
     }
 
     .hero {
-      min-height: 420px;
+      min-height: 520px;
       display: grid;
-      grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.72fr);
       gap: 28px;
       align-items: stretch;
       padding: 34px;
-      border: 1px solid rgba(31, 122, 77, 0.2);
-      background:
-        radial-gradient(circle at 14% 12%, rgba(240, 184, 79, 0.28), transparent 28%),
-        linear-gradient(135deg, #fffdf6 0%, #f3ead7 100%);
+      border: 1px solid rgba(31, 122, 77, 0.22);
+      background: linear-gradient(135deg, #fffdf7 0%, #f3ead8 100%);
       box-shadow: var(--shadow);
     }
 
-    .hero-copy {
+    .hero-main {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -60,86 +62,83 @@
     }
 
     .eyebrow {
-      margin: 0 0 12px;
+      margin: 0 0 14px;
       color: var(--leaf-deep);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0;
       text-transform: uppercase;
     }
 
     h1 {
+      max-width: 800px;
       margin: 0;
-      font-size: clamp(44px, 7vw, 86px);
-      line-height: 0.94;
+      font-size: clamp(42px, 6.6vw, 84px);
+      line-height: 0.96;
       letter-spacing: 0;
     }
 
     .tagline {
-      max-width: 650px;
+      max-width: 760px;
       margin: 22px 0 0;
-      color: #344238;
-      font-size: clamp(18px, 2.2vw, 25px);
+      color: #2f3f35;
+      font-size: clamp(18px, 2.1vw, 25px);
       line-height: 1.35;
-      font-weight: 600;
+      font-weight: 650;
     }
 
     .summary {
-      max-width: 680px;
-      margin: 18px 0 0;
+      max-width: 720px;
+      margin: 16px 0 0;
       color: var(--muted);
       font-size: 16px;
     }
 
-    .hero-panel {
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 7px 12px;
+      border: 1px solid rgba(31, 122, 77, 0.2);
+      background: #eef6ed;
+      color: var(--leaf-deep);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .hero-card {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 18px;
-      padding: 26px;
-      background: rgba(255, 253, 246, 0.76);
-      border: 1px solid rgba(217, 208, 189, 0.9);
+      gap: 20px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255, 253, 247, 0.82);
     }
 
-    .growth-mark {
-      min-height: 180px;
-      position: relative;
-      border: 1px solid rgba(31, 122, 77, 0.18);
-      background:
-        linear-gradient(90deg, rgba(31, 122, 77, 0.08) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(31, 122, 77, 0.08) 1px, transparent 1px),
-        #fffaf0;
-      background-size: 28px 28px;
-      overflow: hidden;
+    .quick-use {
+      display: grid;
+      gap: 10px;
     }
 
-    .growth-mark::before {
-      content: "";
-      position: absolute;
-      left: 18%;
-      bottom: -8%;
-      width: 58%;
-      height: 92%;
-      border-left: 8px solid var(--leaf);
-      border-bottom: 8px solid var(--leaf);
-      border-radius: 0 0 0 68px;
-      transform: rotate(-8deg);
+    .quick-use b {
+      font-size: 16px;
     }
 
-    .growth-mark::after {
-      content: "";
-      position: absolute;
-      right: 15%;
-      top: 18%;
-      width: 116px;
-      height: 62px;
-      background: var(--leaf);
-      border-radius: 70px 10px 70px 10px;
-      transform: rotate(-18deg);
-      box-shadow: -86px 64px 0 -10px #6a9f58, -142px 14px 0 -18px var(--sun);
+    .quick-use p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
     }
 
-    .hero-stats {
+    .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
@@ -148,12 +147,12 @@
     .stat {
       padding: 14px 12px;
       border: 1px solid var(--line);
-      background: #fffaf0;
+      background: #fff9ed;
     }
 
     .stat strong {
       display: block;
-      font-size: 24px;
+      font-size: 26px;
       line-height: 1;
     }
 
@@ -165,110 +164,187 @@
     }
 
     section {
-      margin-top: 34px;
+      margin-top: 36px;
     }
 
     .section-head {
       display: flex;
-      align-items: end;
       justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 14px;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 16px;
     }
 
     h2 {
       margin: 0;
-      font-size: 28px;
+      font-size: 30px;
       line-height: 1.15;
       letter-spacing: 0;
     }
 
     .section-note {
-      max-width: 520px;
+      max-width: 560px;
       margin: 0;
       color: var(--muted);
       font-size: 14px;
     }
 
-    .principles {
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .scenario {
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      min-height: 310px;
+    }
+
+    .scenario header {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .scenario h3 {
+      margin: 0;
+      font-size: 27px;
+      line-height: 1.08;
+    }
+
+    .scenario .label {
+      flex: 0 0 auto;
+      padding: 5px 9px;
+      border: 1px solid rgba(65, 111, 140, 0.22);
+      background: #eef4f7;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .scenario p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .scenario ul,
+    .plain-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .scenario li,
+    .plain-list li {
+      position: relative;
+      padding-left: 18px;
+      color: #33443a;
+      font-size: 14px;
+    }
+
+    .scenario li::before,
+    .plain-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.68em;
+      width: 7px;
+      height: 7px;
+      background: var(--gold);
+    }
+
+    .path-line {
+      margin-top: 16px;
+      padding: 12px 14px;
+      background: #f6f1e6;
+      border: 1px solid var(--line);
+      color: #2d392f;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .phase-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 14px;
     }
 
-    .principle,
-    .layer,
-    .skill-card,
-    .rule,
-    .decision {
+    .phase {
+      padding: 20px;
       border: 1px solid var(--line);
       background: var(--paper);
+      min-height: 210px;
     }
 
-    .principle {
-      padding: 18px;
-      min-height: 154px;
+    .phase h3 {
+      margin: 0 0 8px;
+      font-size: 21px;
     }
 
-    .principle b,
-    .layer b,
-    .rule b,
-    .decision b {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 16px;
-    }
-
-    .principle p,
-    .layer p,
-    .rule p,
-    .decision p {
-      margin: 0;
+    .phase p {
+      margin: 0 0 14px;
       color: var(--muted);
       font-size: 14px;
     }
 
-    .path {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 12px;
-      counter-reset: step;
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .step {
-      position: relative;
-      min-height: 118px;
-      padding: 16px 14px;
-      border: 1px solid rgba(31, 122, 77, 0.28);
-      background: #fffdf6;
-      counter-increment: step;
-    }
-
-    .step::before {
-      content: counter(step, decimal-leading-zero);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 34px;
-      height: 26px;
-      margin-bottom: 16px;
-      background: var(--leaf);
-      color: white;
+    .skill-tags span {
+      padding: 5px 8px;
+      border: 1px solid rgba(31, 122, 77, 0.2);
+      background: #eef6ed;
+      color: var(--leaf-deep);
       font-size: 12px;
       font-weight: 800;
     }
 
-    .step h3 {
-      margin: 0;
-      font-size: 17px;
-      line-height: 1.1;
+    .prompt-grid,
+    .rules,
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
     }
 
-    .step p {
-      margin: 9px 0 0;
-      color: var(--muted);
+    .prompt,
+    .rule,
+    .compare,
+    .skill-card {
+      border: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .prompt {
+      padding: 16px;
+    }
+
+    .prompt b {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--leaf-deep);
+      font-size: 14px;
+    }
+
+    .prompt code {
+      display: block;
+      color: #26352c;
+      white-space: normal;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 13px;
-      line-height: 1.42;
+      line-height: 1.5;
     }
 
     .skills-grid {
@@ -278,7 +354,7 @@
     }
 
     .skill-card {
-      min-height: 268px;
+      min-height: 250px;
       display: flex;
       flex-direction: column;
       padding: 18px;
@@ -295,7 +371,7 @@
     .skill-card h3 {
       margin: 0;
       font-size: 21px;
-      line-height: 1.05;
+      line-height: 1.08;
     }
 
     .cn {
@@ -303,7 +379,7 @@
       margin-top: 5px;
       color: var(--leaf-deep);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .stage {
@@ -313,12 +389,14 @@
       color: var(--leaf-deep);
       border: 1px solid rgba(31, 122, 77, 0.18);
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 800;
       white-space: nowrap;
     }
 
-    .skill-card p {
-      margin: 0 0 12px;
+    .skill-card p,
+    .rule p,
+    .compare p {
+      margin: 0;
       color: var(--muted);
       font-size: 14px;
     }
@@ -328,14 +406,14 @@
       padding: 0;
       list-style: none;
       display: grid;
-      gap: 8px;
-      color: #3a493e;
+      gap: 7px;
+      color: #39483e;
       font-size: 13px;
     }
 
     .mini-list li {
-      padding-left: 16px;
       position: relative;
+      padding-left: 16px;
     }
 
     .mini-list li::before {
@@ -345,53 +423,24 @@
       top: 0.68em;
       width: 6px;
       height: 6px;
-      background: var(--sun);
+      background: var(--gold);
     }
 
-    .layers {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .layer {
-      padding: 20px;
-      min-height: 180px;
-    }
-
-    .layer-name {
-      display: inline-flex;
-      align-items: center;
-      height: 28px;
-      margin-bottom: 16px;
-      padding: 0 10px;
-      background: #eff4f6;
-      color: var(--sky);
-      border: 1px solid rgba(71, 122, 150, 0.2);
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .rules {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .rule {
+    .rule,
+    .compare {
       padding: 20px;
     }
 
-    .decision {
-      padding: 22px;
+    .rule b,
+    .compare b {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .compare:nth-child(2) {
       border-color: rgba(156, 70, 87, 0.28);
-      background: #fff9f9;
-    }
-
-    .decision-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      background: #fff8f8;
     }
 
     .footer {
@@ -402,19 +451,18 @@
       font-size: 13px;
     }
 
-    @media (max-width: 960px) {
-      .hero {
+    @media (max-width: 980px) {
+      .hero,
+      .scenario-grid,
+      .prompt-grid,
+      .rules,
+      .compare-grid {
         grid-template-columns: 1fr;
       }
 
-      .principles,
-      .layers,
+      .phase-grid,
       .skills-grid {
         grid-template-columns: repeat(2, 1fr);
-      }
-
-      .path {
-        grid-template-columns: repeat(3, 1fr);
       }
     }
 
@@ -427,13 +475,9 @@
         padding: 22px;
       }
 
-      .hero-stats,
-      .principles,
-      .layers,
-      .rules,
-      .decision-grid,
-      .skills-grid,
-      .path {
+      .stats,
+      .phase-grid,
+      .skills-grid {
         grid-template-columns: 1fr;
       }
 
@@ -447,118 +491,164 @@
 <body>
   <main class="page">
     <section class="hero" aria-labelledby="title">
-      <div class="hero-copy">
+      <div class="hero-main">
         <p class="eyebrow">Gro Skills System v0.1</p>
-        <h1 id="title">Gro Skills</h1>
-        <p class="tagline">让 AI 编程任务沿着清晰路径成长为可交付代码。</p>
-        <p class="summary">Gro Skills 是一套轻量 AI coding skill system。它的核心方法 GroPath 把模糊想法变成可验证交付，把关键决策留成证据，把项目差异留给使用方仓库。</p>
+        <h1 id="title">AI Coding 的双场景工作流</h1>
+        <p class="tagline">一组可执行的 AI coding skills：想清楚、写清楚、做出来、验证好。</p>
+        <p class="summary">Gro Skills 不接管你的开发流程。它只把 AI 编程里最容易翻车的几个关口固定下来：目标、证据、规格、计划、实现、验证、评审和复盘。</p>
+        <div class="hero-actions" aria-label="适用场景">
+          <span class="pill">团队开发者</span>
+          <span class="pill">独立开发者</span>
+          <span class="pill">不强制全链路</span>
+          <span class="pill">证据优先</span>
+        </div>
       </div>
 
-      <aside class="hero-panel" aria-label="Gro Skills 概览">
-        <div class="growth-mark" aria-hidden="true"></div>
-        <div class="hero-stats">
-          <div class="stat">
-            <strong>12</strong>
-            <span>core skills</span>
-          </div>
+      <aside class="hero-card" aria-label="Gro Skills 速览">
+        <div class="quick-use">
+          <b>一句话用法</b>
+          <p>把你当前卡住的阶段说出来，让 AI 调用对应 skill：定目标、挑毛病、找证据、写规格、验证它。</p>
+        </div>
+        <div class="stats">
           <div class="stat">
             <strong>2</strong>
-            <span>public dirs</span>
+            <span>核心场景</span>
           </div>
           <div class="stat">
-            <strong>1</strong>
-            <span>growth path</span>
+            <strong>4</strong>
+            <span>工作阶段</span>
+          </div>
+          <div class="stat">
+            <strong>12</strong>
+            <span>skills</span>
           </div>
         </div>
       </aside>
     </section>
 
-    <section aria-labelledby="principles">
+    <section aria-labelledby="scenarios">
       <div class="section-head">
-        <h2 id="principles">设计原则</h2>
-        <p class="section-note">核心只管通用路径和证据边界。技术栈、工具命令、公司流程和项目规则不塞进 core。</p>
+        <h2 id="scenarios">先选你的场景</h2>
+        <p class="section-note">Gro Skills 的入口不是“背 12 个命令”，而是判断你现在处在团队交付还是独立项目推进里。</p>
       </div>
-      <div class="principles">
-        <article class="principle">
-          <b>成长优先</b>
-          <p>每次任务都应让代码、上下文或流程变得更清楚，而不是只追求一次性完成。</p>
+
+      <div class="scenario-grid">
+        <article class="scenario">
+          <header>
+            <h3>团队开发者：还原需求到交付代码</h3>
+            <span class="label">Team delivery</span>
+          </header>
+          <p>你已经有 PRD、设计稿、任务、接口或团队流程。Gro Skills 帮你把需求理解、方案、规格、实现和验收串起来，减少“AI 写得很快但写偏了”。</p>
+          <ul>
+            <li>澄清需求边界，避免漏掉非目标和验收口径。</li>
+            <li>先做方案和可执行规格，再让 AI 写代码。</li>
+            <li>交付前用本轮证据验证实现符合需求。</li>
+            <li>评审时整理风险、diff、验证结果和交接说明。</li>
+          </ul>
+          <div class="path-line">write-brief -> make-design -> write-spec -> make-plan -> build-it -> prove-it -> review-it</div>
         </article>
-        <article class="principle">
-          <b>证据优先</b>
-          <p>AI 不能只说“已完成”。关键结论、改动和验收都需要可检查证据。</p>
-        </article>
-        <article class="principle">
-          <b>轻核心</b>
-          <p>core skill 保持短小、通用、可组合，不接管所有工作细节。</p>
-        </article>
-        <article class="principle">
-          <b>少即是多</b>
-          <p>第一版只保留可执行 skills 和公开 docs；扩展目录等真的用到再加。</p>
+
+        <article class="scenario">
+          <header>
+            <h3>独立开发者：从想法到可迭代项目</h3>
+            <span class="label">Solo project</span>
+          </header>
+          <p>你从想法、假设、灵感或一个市场观察开始，没有完整团队分工。Gro Skills 帮你先判断方向，再把每个版本变成可实现、可验证、可复盘的交付。</p>
+          <ul>
+            <li>把模糊想法磨成目标、约束和成功标准。</li>
+            <li>主动挑毛病、找证据，避免做错方向。</li>
+            <li>按版本写需求、做设计、拆计划和实现。</li>
+            <li>把踩坑沉淀成自己的项目规则和自动化。</li>
+          </ul>
+          <div class="path-line">set-goal -> poke-holes -> find-proof -> write-brief -> make-design -> write-spec -> make-plan -> build-it -> prove-it -> save-lesson</div>
         </article>
       </div>
     </section>
 
-    <section aria-labelledby="path">
+    <section aria-labelledby="quick-start">
       <div class="section-head">
-        <h2 id="path">成长路径</h2>
-        <p class="section-note">这条路径不是每个小任务都要完整跑完。它定义了从模糊想法到可交付代码时，哪些动作应该存在。</p>
+        <h2 id="quick-start">新人怎么开口用</h2>
+        <p class="section-note">你可以直接用自然语言，不需要先记住 skill id。下面这些说法会把 AI 拉到正确阶段。</p>
       </div>
-      <div class="path">
-        <article class="step">
-          <h3>定目标</h3>
-          <p>先弄清楚问题、目标、约束和成功标准。</p>
+
+      <div class="prompt-grid">
+        <article class="prompt">
+          <b>需求不够清楚</b>
+          <code>先别写代码，帮我把这个需求的目标、非目标、未知项和验收标准定清楚。</code>
         </article>
-        <article class="step">
-          <h3>挑毛病</h3>
-          <p>主动找反例、风险和隐藏假设。</p>
+        <article class="prompt">
+          <b>担心方案有坑</b>
+          <code>别顺着我说，先挑这个方案的问题，列出失败场景、隐藏假设和需要补的证据。</code>
         </article>
-        <article class="step">
-          <h3>找证据</h3>
-          <p>先判断证据力度，再用代码、运行结果、文档、数据或网页支撑判断。</p>
+        <article class="prompt">
+          <b>需要先查证</b>
+          <code>先找证据再判断。请区分代码证据、运行证据、文档证据和外部资料。</code>
         </article>
-        <article class="step">
-          <h3>写需求</h3>
-          <p>把想法变成边界清楚的需求说明。</p>
+        <article class="prompt">
+          <b>准备让 AI 实现</b>
+          <code>把这个方案写成可执行规格，要求下一位 AI 不打开原始资料也能实现和验证。</code>
         </article>
-        <article class="step">
-          <h3>做设计</h3>
-          <p>决定结构、模块、数据流和技术取舍。</p>
+        <article class="prompt">
+          <b>需要拆任务</b>
+          <code>按这个 spec 拆一个实现计划，每一步写清文件范围、验证方式和预期结果。</code>
         </article>
-        <article class="step">
-          <h3>写规格</h3>
-          <p>写成下一位 AI 可直接执行、验证和回流变更的详细说明。</p>
+        <article class="prompt">
+          <b>准备交付</b>
+          <code>验证这次改动。没有新鲜证据不要说完成，失败项先分类再修复和复验。</code>
         </article>
-        <article class="step">
-          <h3>拆计划</h3>
-          <p>拆成小任务，每一步都有文件范围、验证方式和预期结果。</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="phases">
+      <div class="section-head">
+        <h2 id="phases">四个阶段</h2>
+        <p class="section-note">完整路径保留，但对外先讲阶段。小任务可以从中间进入，大任务才需要从头跑到尾。</p>
+      </div>
+
+      <div class="phase-grid">
+        <article class="phase">
+          <h3>想清楚</h3>
+          <p>目标不清、证据不足、方案未经挑战时，不急着进入实现。</p>
+          <div class="skill-tags">
+            <span>set-goal</span>
+            <span>poke-holes</span>
+            <span>find-proof</span>
+          </div>
         </article>
-        <article class="step">
-          <h3>开始做</h3>
-          <p>只在已有规格或计划时执行，偏离计划时说明原因。</p>
+        <article class="phase">
+          <h3>说清楚</h3>
+          <p>把想法、证据和方案整理成需求、设计和可执行规格。</p>
+          <div class="skill-tags">
+            <span>write-brief</span>
+            <span>make-design</span>
+            <span>write-spec</span>
+          </div>
         </article>
-        <article class="step">
-          <h3>修问题</h3>
-          <p>失败时先复现、建假设，再最小修复。</p>
+        <article class="phase">
+          <h3>做出来</h3>
+          <p>按计划实现；失败时系统化 debug，不猜着改。</p>
+          <div class="skill-tags">
+            <span>make-plan</span>
+            <span>build-it</span>
+            <span>fix-bug</span>
+          </div>
         </article>
-        <article class="step">
-          <h3>验证它</h3>
-          <p>跑测试、检查、截图或手动验收并修复失败。</p>
-        </article>
-        <article class="step">
-          <h3>做评审</h3>
-          <p>审 diff、风险和证据，准备交付。</p>
-        </article>
-        <article class="step">
-          <h3>记经验</h3>
-          <p>把重复踩坑、新规则和领域语言沉淀到长期上下文或自动化。</p>
+        <article class="phase">
+          <h3>交付并成长</h3>
+          <p>交付前验证和评审；重复教训回流成规则、文档或自动化。</p>
+          <div class="skill-tags">
+            <span>prove-it</span>
+            <span>review-it</span>
+            <span>save-lesson</span>
+          </div>
         </article>
       </div>
     </section>
 
     <section aria-labelledby="core-skills">
       <div class="section-head">
-        <h2 id="core-skills">Core Skills v0.1</h2>
-        <p class="section-note">推荐使用短、好记、像命令的英文名。中文名用于文档和 README，英文名用于 skill 目录。</p>
+        <h2 id="core-skills">完整 Core Skills</h2>
+        <p class="section-note">英文 id 用于 skill 目录和触发机制；中文名用于理解和团队沟通。</p>
       </div>
 
       <div class="skills-grid">
@@ -569,9 +659,8 @@
           </header>
           <p>把模糊请求整理成清楚的问题、目标、约束和成功标准。</p>
           <ul class="mini-list">
-            <li>输入：想法、任务、问题、用户意图。</li>
-            <li>输出：目标重述、未知项、成功标准、下一步决定。</li>
-            <li>停止：目标可被需求或设计使用。</li>
+            <li>适合：想法早期、需求不清、范围不稳。</li>
+            <li>输出：目标重述、未知项、成功标准、下一步。</li>
           </ul>
         </article>
 
@@ -582,9 +671,8 @@
           </header>
           <p>攻击需求、方案或判断里的漏洞，防止 AI 顺从式赞同。</p>
           <ul class="mini-list">
-            <li>输入：计划、需求、技术判断、产品假设。</li>
+            <li>适合：方案进入下一阶段前。</li>
             <li>输出：失败模式、隐藏假设、反例、风险等级。</li>
-            <li>升级：高风险且证据不足时回到找证据。</li>
           </ul>
         </article>
 
@@ -593,12 +681,10 @@
             <h3>find-proof <span class="cn">找证据</span></h3>
             <span class="stage">evidence</span>
           </header>
-          <p>判断证据力度，并从代码、运行结果、文档、数据或互联网里找到依据。</p>
+          <p>判断证据力度，并从代码、运行结果、文档、数据或网页里找到依据。</p>
           <ul class="mini-list">
-            <li>输入：需要确认的问题或 claim。</li>
-            <li>输出：证据、来源、可信度、缺口。</li>
-            <li>分层：本地证据、运行证据、外部轻查、深度调研。</li>
-            <li>边界：深度搜索、多引擎和归档放进 research pack。</li>
+            <li>适合：事实不确定、claim 需要验证。</li>
+            <li>边界：深度搜索和归档进入 research pack。</li>
           </ul>
         </article>
 
@@ -607,11 +693,10 @@
             <h3>write-brief <span class="cn">写需求</span></h3>
             <span class="stage">requirement</span>
           </header>
-          <p>把目标和证据整理成可以被设计和实现使用的需求说明。</p>
+          <p>把目标和证据整理成可以被设计、实现和验收使用的需求说明。</p>
           <ul class="mini-list">
-            <li>输入：目标、用户场景、证据、约束。</li>
-            <li>输出：需求、非目标、验收标准、开放问题。</li>
-            <li>停止：需求足够进入设计。</li>
+            <li>适合：团队任务入口、独立项目版本入口。</li>
+            <li>输出：场景、需求、非目标、约束、验收标准。</li>
           </ul>
         </article>
 
@@ -620,11 +705,10 @@
             <h3>make-design <span class="cn">做设计</span></h3>
             <span class="stage">design</span>
           </header>
-          <p>在写代码前决定模块边界、数据流、关键取舍和风险。</p>
+          <p>在写代码前决定模块边界、数据流、接口、关键取舍和风险。</p>
           <ul class="mini-list">
-            <li>输入：需求、现有代码结构、约束。</li>
-            <li>输出：方案概览、模块职责、数据流、风险。</li>
-            <li>停止：人类可以审方案并做决定。</li>
+            <li>适合：跨文件、跨模块、状态或接口复杂的改动。</li>
+            <li>输出：方案、模块职责、数据流、决策和风险。</li>
           </ul>
         </article>
 
@@ -633,12 +717,10 @@
             <h3>write-spec <span class="cn">写规格</span></h3>
             <span class="stage">spec</span>
           </header>
-          <p>把已认可设计变成下一位 AI 不看原始资料也能执行、验证和回流变更的规格。</p>
+          <p>把已认可设计变成下一位 AI 不看原始资料也能执行和验证的规格。</p>
           <ul class="mini-list">
-            <li>输入：已认可设计和必要证据。</li>
-            <li>输出：决定、文件级改动、接口、字段、测试契约。</li>
-            <li>必须：包含 Verification 和 Change Policy。</li>
-            <li>证据：每条关键要求能追溯到需求或设计。</li>
+            <li>适合：准备交给 AI 实现、跨 session 交接。</li>
+            <li>必须：Verification 和 Change Policy。</li>
           </ul>
         </article>
 
@@ -647,11 +729,10 @@
             <h3>make-plan <span class="cn">拆计划</span></h3>
             <span class="stage">plan</span>
           </header>
-          <p>把规格拆成小而有序的实现任务，并为每步指定文件范围、验证方式和预期结果。</p>
+          <p>把规格拆成有顺序、有依赖、有文件范围和验证方式的小任务。</p>
           <ul class="mini-list">
-            <li>输入：可执行规格。</li>
-            <li>输出：任务列表、文件范围、依赖、每步验证和预期结果。</li>
-            <li>停止：任务可被逐步执行和复查。</li>
+            <li>适合：实现前排任务、拆检查点。</li>
+            <li>输出：任务列表、依赖、每步验证和预期结果。</li>
           </ul>
         </article>
 
@@ -662,9 +743,8 @@
           </header>
           <p>执行已有规格或计划，遵守仓库约定，并记录计划外调整。</p>
           <ul class="mini-list">
-            <li>输入：已确认计划、规格、仓库规则。</li>
-            <li>输出：代码改动、局部验证、偏离说明。</li>
-            <li>边界：不是普通编码入口；没有边界和验证先回到写规格或拆计划。</li>
+            <li>适合：已有清楚计划和验收标准。</li>
+            <li>边界：不是普通“随便写代码”入口。</li>
           </ul>
         </article>
 
@@ -673,11 +753,10 @@
             <h3>fix-bug <span class="cn">修问题</span></h3>
             <span class="stage">debug</span>
           </header>
-          <p>失败出现时禁止猜测式修复，先复现、假设、验证，再最小改动。</p>
+          <p>失败出现时先复现、建假设、找证据，再做最小修复。</p>
           <ul class="mini-list">
-            <li>输入：失败现象、日志、测试结果、用户反馈。</li>
-            <li>输出：复现路径、假设、证据、最小修复。</li>
-            <li>红线：不复现不修复；修复后必须重跑原失败路径。</li>
+            <li>适合：测试失败、运行报错、行为异常。</li>
+            <li>红线：不复现不修复，修复后重跑失败路径。</li>
           </ul>
         </article>
 
@@ -688,9 +767,8 @@
           </header>
           <p>交付前运行验证和修复闭环，用本轮新鲜证据证明改动真的可用。</p>
           <ul class="mini-list">
-            <li>输入：已完成改动、验收标准。</li>
-            <li>输出：验证矩阵、失败分类、修复和复验结果。</li>
-            <li>红线：没有新鲜验证证据，不能说完成、修好或通过。</li>
+            <li>适合：准备说完成、修好、可交付前。</li>
+            <li>红线：没有证据，不能声明通过。</li>
           </ul>
         </article>
 
@@ -701,9 +779,8 @@
           </header>
           <p>交付前审查 diff、风险、测试证据和交接说明。</p>
           <ul class="mini-list">
-            <li>输入：diff、规格、验证结果。</li>
-            <li>输出：风险摘要、测试证据、提交或交接说明。</li>
-            <li>边界：git/PR/发布细节可放入 agent-ops pack。</li>
+            <li>适合：提交、PR、handoff 前。</li>
+            <li>边界：git/PR/发布细节进入 pack 或 overlay。</li>
           </ul>
         </article>
 
@@ -714,89 +791,84 @@
           </header>
           <p>把重复失败、项目规则、领域语言和流程缺口沉淀到长期上下文。</p>
           <ul class="mini-list">
-            <li>输入：任务结果、踩坑、反复出现的纠正。</li>
-            <li>输出：发生了什么、是否可复用、应该写到哪里。</li>
-            <li>去处：AGENTS、CONTEXT、ADR、测试、lint、脚本、pack 或 core。</li>
-            <li>目的：让下一次任务站在这一次之上。</li>
+            <li>适合：任务结束后、同类纠正第二次出现时。</li>
+            <li>去处：AGENTS、CONTEXT、ADR、测试、lint、脚本或 pack。</li>
           </ul>
         </article>
       </div>
     </section>
 
-    <section aria-labelledby="layers">
+    <section aria-labelledby="skip">
       <div class="section-head">
-        <h2 id="layers">当前结构</h2>
-        <p class="section-note">第一版只保留正在使用的内容，避免空目录制造概念负担。</p>
+        <h2 id="skip">什么时候不用全链路</h2>
+        <p class="section-note">路径是地图，不是表演。成熟用户应该从当前风险点进入。</p>
       </div>
-      <div class="layers">
-        <article class="layer">
-          <span class="layer-name">skills</span>
-          <b>通用路径</b>
-          <p>定义每个 AI coding 任务都可能需要的工作动作：定目标、找证据、写规格、验证、评审、沉淀。</p>
+
+      <div class="rules">
+        <article class="rule">
+          <b>小 bug</b>
+          <p>从 `fix-bug -> prove-it` 进入。先复现和定位，不需要补完整需求和设计。</p>
         </article>
-        <article class="layer">
-          <span class="layer-name">docs</span>
-          <b>公开说明</b>
-          <p>只放一个介绍 Markdown 和一个 HTML 视图；历史调研与私有参考资料不进开源仓库。</p>
+        <article class="rule">
+          <b>明确小改</b>
+          <p>从 `make-plan -> build-it -> prove-it` 进入。边界和验收已清楚时，不要制造文档负担。</p>
+        </article>
+        <article class="rule">
+          <b>需求已经完整</b>
+          <p>从 `make-design` 或 `write-spec` 进入。团队已有 PRD 和设计稿时，不必重新做目标澄清。</p>
+        </article>
+        <article class="rule">
+          <b>想法还很早</b>
+          <p>从 `set-goal -> poke-holes -> find-proof` 进入。不要在问题还糊的时候让 AI 直接实现。</p>
         </article>
       </div>
     </section>
 
-    <section aria-labelledby="rules">
+    <section aria-labelledby="difference">
       <div class="section-head">
-        <h2 id="rules">运行规则</h2>
-        <p class="section-note">这些规则决定 Gro Skills 和普通提示词集合的区别。</p>
+        <h2 id="difference">它和普通 prompt 有什么区别</h2>
+        <p class="section-note">Gro Skills 的价值不在“提示词更长”，而在把关键关口变成可复用流程。</p>
       </div>
+
+      <div class="compare-grid">
+        <article class="compare">
+          <b>普通 prompt</b>
+          <p>一次性说明你想让 AI 做什么。适合小问题，但很容易在长任务里丢边界、漏证据、跳过验证或被用户立场带偏。</p>
+        </article>
+        <article class="compare">
+          <b>Gro Skills</b>
+          <p>把工作拆成阶段，并规定每个阶段的输入、输出、停止条件和成功证据。AI 仍然灵活工作，但不能轻易跳过关键检查点。</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="principles">
+      <div class="section-head">
+        <h2 id="principles">运行原则</h2>
+        <p class="section-note">这些原则决定 Gro Skills 适合真实项目，而不是只适合演示。</p>
+      </div>
+
       <div class="rules">
         <article class="rule">
-          <b>小任务不强迫跑全链路</b>
-          <p>简单 bug 可以从 fix-bug 进入，简单修改可以从 make-plan 进入。build-it 只执行已有规格或计划。路径是地图，不是表演。</p>
-        </article>
-        <article class="rule">
-          <b>高风险边界必须有证据</b>
-          <p>需求、设计、规格、验证、评审和学习沉淀是关键边界。越接近交付，证据要求越高。</p>
+          <b>证据优先</b>
+          <p>AI 不能只说“已完成”。关键结论、改动和验收都需要可检查证据。</p>
         </article>
         <article class="rule">
           <b>反对顺从式 AI</b>
-          <p>poke-holes 是一等公民。重要方案进入实现前，必须至少经历一次风险和假设检查。</p>
+          <p>重要方案进入实现前，至少经历一次风险、反例和隐藏假设检查。</p>
+        </article>
+        <article class="rule">
+          <b>保持简单</b>
+          <p>skills 只管通用动作和责任边界。具体技术栈、团队流程和项目命令留在使用方仓库。</p>
         </article>
         <article class="rule">
           <b>经验必须回流</b>
-          <p>同一个纠正出现第二次，就应该进入 overlay、pack、core skill 或自动化检查，而不是继续靠记忆。</p>
+          <p>同一个纠正出现第二次，就应该进入长期上下文、测试、lint、脚本、pack 或 core skill。</p>
         </article>
       </div>
     </section>
 
-    <section aria-labelledby="decisions">
-      <div class="section-head">
-        <h2 id="decisions">v0.1 已定口径</h2>
-        <p class="section-note">这些问题已经在第一版 core skill 里落成规则，后续使用中再按真实反馈迭代。</p>
-      </div>
-      <div class="decision-grid">
-        <article class="decision">
-          <b>build-it 保留，但收窄</b>
-          <p>它只定义执行已有规格或计划时的纪律，不作为普通编码入口。这样保留执行阶段，又避免和 coding agent 默认能力重叠。</p>
-        </article>
-        <article class="decision">
-          <b>review-it 不包含 git/PR</b>
-          <p>v0.1 只做评审、风险判断和交接。commit、PR、merge、release 放进 agent-ops 或 git pack。</p>
-        </article>
-        <article class="decision">
-          <b>find-proof 只管证据分层</b>
-          <p>core 定义证据力度分层；research pack 负责深度搜索、中文优先、多源验证和调研归档。</p>
-        </article>
-        <article class="decision">
-          <b>frontmatter 用英文 id</b>
-          <p>skill 目录和 frontmatter `name` 用英文短名；文档和 README 保留中文别名，避免触发机制被中文别名稀释。</p>
-        </article>
-        <article class="decision">
-          <b>开源实践已经吸收进规则</b>
-          <p>Superpowers 给计划、执行、验证纪律；mattpocock/skills 给轻量组合和 CONTEXT/ADR 回流；OpenSpec/Spec Kit 给规格先于实现和可验证变更。</p>
-        </article>
-      </div>
-    </section>
-
-    <p class="footer">Gro Skills v0.1 draft. Core method: GroPath. Working tagline: Grow ideas into shippable code.</p>
+    <p class="footer">Gro Skills v0.1 draft. AI coding skills for clearer plans, safer changes, and verified delivery.</p>
   </main>
 </body>
 </html>

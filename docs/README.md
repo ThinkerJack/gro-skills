@@ -1,8 +1,8 @@
 # Gro Skills System
 
-Gro Skills 是一套面向 AI 编程任务的 skill system。它的核心方法是 GroPath：把模糊想法推进成可验证、可评审、可交付的代码。
+Gro Skills 是一组给 AI 编程用的技能。它帮你和 AI 按固定顺序把事情想清楚、写清楚、做出来、验证好。
 
-## Core Path
+## Workflow
 
 ```text
 set-goal -> poke-holes -> find-proof -> write-brief -> make-design -> write-spec

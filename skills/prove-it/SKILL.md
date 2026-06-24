@@ -1,6 +1,6 @@
 ---
 name: prove-it
-description: "Use when 用户需要验证、跑测试、QA、自测、证明可用、修复检查失败；also use before claiming work is complete, fixed, working, passing, or ready, and when running validation and repair loops."
+description: "用新鲜验证证据证明改动可用,运行检查、分类失败、修复并复验。触发词:验证/跑测试/QA/自测/证明可用/修到通过/验收/prove it/verify/test。Use before claiming work is complete, fixed, working, passing, or ready, and when running validation and repair loops."
 ---
 
 # 验证它 prove-it

@@ -1,6 +1,6 @@
 ---
 name: fix-bug
-description: "Use when 用户需要修 bug、排查失败、测试不过、行为异常、运行报错、CI 失败；also use when debugging failures, unexpected behavior, regressions, flaky checks, or when tempted to make speculative fixes."
+description: "系统化排查并修复 bug/失败/异常,先复现和验证假设再最小修复。触发词:修 bug/修问题/排查失败/测试不过/运行报错/CI 失败/行为异常/fix bug/debug/failing test。Use when debugging failures, unexpected behavior, regressions, flaky checks, or when tempted to make speculative fixes."
 ---
 
 # 修问题 fix-bug

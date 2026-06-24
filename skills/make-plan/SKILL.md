@@ -1,6 +1,6 @@
 ---
 name: make-plan
-description: "Use when 用户需要拆计划、排任务、制定实现步骤、定义检查点；also use when a spec or clear task must be broken into ordered implementation steps with dependencies, verification checks, and checkpoint boundaries."
+description: "把规格或明确任务拆成有顺序、有依赖、有验证点的实现计划。触发词:拆计划/排任务/制定步骤/实现计划/检查点/make plan/plan implementation/task breakdown。Use when a spec or clear task must be broken into ordered implementation steps with dependencies, verification checks, and checkpoint boundaries."
 ---
 
 # 拆计划 make-plan

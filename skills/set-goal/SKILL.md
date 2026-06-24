@@ -1,6 +1,6 @@
 ---
 name: set-goal
-description: "Use when 用户需要定目标、澄清意图、明确问题、收敛范围、定义成功标准；also use when a request is vague, exploratory, underspecified, or needs goal definition before requirements, design, or coding."
+description: "澄清意图、明确问题、收敛范围并定义成功标准。触发词:定目标/澄清意图/明确问题/收敛范围/成功标准/想清楚/set goal/clarify intent。Use when a request is vague, exploratory, underspecified, or needs goal definition before requirements, design, or coding."
 ---
 
 # 定目标 set-goal

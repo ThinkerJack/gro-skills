@@ -1,6 +1,6 @@
 ---
 name: build-it
-description: "Use when 用户明确要执行已有计划、按规格实现、逐步落地任务；also use when a written spec or implementation plan is ready and coding must follow task boundaries, repo conventions, and per-step verification."
+description: "执行已有规格或计划,按边界逐步实现并每步验证。触发词:开始做/按计划实现/执行计划/按规格写/落地任务/build it/implement/execute plan。Use when a written spec or implementation plan is ready and coding must follow task boundaries, repo conventions, and per-step verification."
 ---
 
 # 开始做 build-it
