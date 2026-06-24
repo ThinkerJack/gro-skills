@@ -1,8 +1,8 @@
-# GroPath
+# Gro Skills
 
-Grow ideas into shippable code.
+AI coding skills for growing ideas into shippable code.
 
-GroPath 是一套面向 AI 编程任务的成长路径 skill system。它把模糊想法逐步推进成可验证、可评审、可交付的代码。
+Gro Skills 是一套面向 AI 编程任务的 skill system。它的核心方法是 GroPath：把模糊想法逐步推进成可验证、可评审、可交付的代码。
 
 核心路径：
 
@@ -28,5 +28,5 @@ fix-bug      prove-it     review-it     save-lesson
 
 ## 当前文档
 
-- [GroPath Skill System](docs/README.md)
-- [GroPath Skill System v0.1 HTML](docs/gropath-skill-system-v1.html)
+- [Gro Skills System](docs/README.md)
+- [Gro Skills System v0.1 HTML](docs/gro-skills-system-v1.html)

@@ -1,6 +1,6 @@
-# GroPath Skill System
+# Gro Skills System
 
-GroPath 是一套面向 AI 编程任务的成长路径 skill system。它把模糊想法推进成可验证、可评审、可交付的代码。
+Gro Skills 是一套面向 AI 编程任务的 skill system。它的核心方法是 GroPath：把模糊想法推进成可验证、可评审、可交付的代码。
 
 ## Core Path
 
@@ -42,4 +42,4 @@ set-goal -> poke-holes -> find-proof -> write-brief -> make-design -> write-spec
 
 ## Public Docs
 
-- [GroPath Skill System v0.1 HTML](./gropath-skill-system-v1.html)
+- [Gro Skills System v0.1 HTML](./gro-skills-system-v1.html)
