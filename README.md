@@ -37,6 +37,16 @@ fix-bug      prove-it     review-it     save-lesson
 
 推荐方式是：**本地 clone 一份 Gro Skills，然后在项目里用软链引用 `skills/`**。这样后续更新只需要 `git pull`，不用在每个项目里复制一份。
 
+接入规则：
+
+1. 优先用软链引用 `gro-skills/skills`，不要复制一份。
+2. 优先接入到 `.agents/skills`；如果当前 AI 工具只识别特定 skill 目录，再额外接入对应目录。
+3. 如果当前工具不支持可执行 skill，再把工作流写进 `AGENTS.md` / `CLAUDE.md`，作为降级方案。
+4. 接入后要验证当前 AI 是否能识别或触发这些 skills。
+5. 接入完成后说明：接入方式、文件改动、如何使用、如何更新。
+
+不要把 `docs/references` 或本地草稿资料接入项目；也不要把项目私有规则写回 Gro Skills，项目规则应留在使用方仓库。
+
 ### 1. Clone
 
 ```bash
@@ -114,35 +124,5 @@ git pull
 仓库地址：
 https://github.com/ThinkerJack/gro-skills
 
-目标：
-1. clone 这个仓库到我本地常用的 tools 或 workspace 目录。只是使用不需要 fork；如果我要长期改自己的版本，再先 fork。
-2. 阅读仓库的 README.md、docs/README.md 和 docs/gro-skills-system-v1.html，理解它的工作流。
-3. 把里面的 skills 接入到当前项目，让我的 AI 编程流程可以使用这些技能。
-4. 优先用软链方式引用 gro-skills/skills，不要复制一份，方便后续同步更新。
-5. 优先接入到 .agents/skills；如果当前 AI/工具只支持特定 skill 目录，再额外软链到对应目录，例如 .claude/skills。
-6. 如果当前工具不支持可执行 skill，就把 Gro Skills 的工作流整理进当前项目的 AGENTS.md / CLAUDE.md / AI 使用说明里，但要明确说明这只是降级方案，优先目标仍然是让 skill 可触发。
-7. 接入后请检查：
-   - skill 是否能被当前 AI 识别或触发；
-   - 当前项目是否有自己的 AGENTS.md / CLAUDE.md，需要避免冲突；
-   - 是否有不适合当前项目的 skill 需要暂时排除；
-   - 是否需要补充项目自己的验证命令、测试命令和交付规则。
-8. 最后给我一份简短说明：接入方式、文件改动、如何使用、如何更新 gro-skills。
-
-注意：
-- 不要把 gro-skills 里的 docs/references 或本地草稿资料接入项目。
-- 不要把项目私有规则写回 gro-skills；项目规则留在当前项目。
-- Gro Skills 的工作路径是：
-  定目标 -> 挑毛病 -> 找证据 -> 写需求 -> 做设计 -> 写规格 -> 拆计划 -> 开始做 -> 修问题 -> 验证它 -> 做评审 -> 记经验
-```
-
-如果已经 fork 好了，可以把第 1 步改成：
-
-```text
-我已经 fork 了 Gro Skills，请从我的 fork 地址 clone 并接入当前项目。
-```
-
-如果已经 clone 好了，可以直接说：
-
-```text
-Gro Skills 已经在本地，请把它的 skills 软链接入当前项目，并验证当前 AI 是否能识别。
+请先 clone 或打开这个仓库，阅读 README.md，并按 README 的推荐方式把 Gro Skills 接入当前项目。
 ```
