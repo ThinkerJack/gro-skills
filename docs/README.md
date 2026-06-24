@@ -33,13 +33,12 @@ set-goal -> poke-holes -> find-proof -> write-brief -> make-design -> write-spec
 | `review-it` | 做评审 | 审 diff、风险和证据，准备交付或 handoff。 |
 | `save-lesson` | 记经验 | 把重复失败、项目规则、领域语言和流程缺口沉淀成长期上下文或自动化。 |
 
-## Layers
+## Structure
 
-| Layer | 放什么 | 不放什么 |
+| Path | 放什么 | 不放什么 |
 |---|---|---|
 | `skills/` | 通用路径、证据边界、阶段责任 | 具体技术栈命令、公司流程、项目路径 |
-| `packs/` | research、Flutter、Figma、product-data、agent-ops 等能力 | 每个项目自己的偏好 |
-| `overlays/` | 个人、公司或具体项目规则 | 通用方法论 |
+| `docs/` | 公开介绍文档和 HTML 视图 | 历史调研、私有参考资料 |
 
 ## Public Docs
 

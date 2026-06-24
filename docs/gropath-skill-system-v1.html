@@ -451,7 +451,7 @@
         <p class="eyebrow">GroPath Skill System v0.1</p>
         <h1 id="title">GroPath</h1>
         <p class="tagline">让 AI 编程任务沿着清晰路径成长为可交付代码。</p>
-        <p class="summary">GroPath 不是另一个重型流程框架。它是一套轻量核心 skill：把模糊想法变成可验证交付，把关键决策留成证据，把项目差异放进 packs 和 overlays。</p>
+        <p class="summary">GroPath 不是另一个重型流程框架。它是一套轻量核心 skill：把模糊想法变成可验证交付，把关键决策留成证据，把项目差异留给使用方仓库。</p>
       </div>
 
       <aside class="hero-panel" aria-label="GroPath 概览">
@@ -462,8 +462,8 @@
             <span>core skills</span>
           </div>
           <div class="stat">
-            <strong>3</strong>
-            <span>layers</span>
+            <strong>2</strong>
+            <span>public dirs</span>
           </div>
           <div class="stat">
             <strong>1</strong>
@@ -492,8 +492,8 @@
           <p>core skill 保持短小、通用、可组合，不接管所有工作细节。</p>
         </article>
         <article class="principle">
-          <b>可分层</b>
-          <p>通用方法进 core，能力扩展进 packs，个人或公司规则进 overlays。</p>
+          <b>少即是多</b>
+          <p>第一版只保留可执行 skills 和公开 docs；扩展目录等真的用到再加。</p>
         </article>
       </div>
     </section>
@@ -725,8 +725,8 @@
 
     <section aria-labelledby="layers">
       <div class="section-head">
-        <h2 id="layers">三层结构</h2>
-        <p class="section-note">GroPath 的核心价值不在把所有东西写进 core，而在把不同层的责任分开。</p>
+        <h2 id="layers">当前结构</h2>
+        <p class="section-note">第一版只保留正在使用的内容，避免空目录制造概念负担。</p>
       </div>
       <div class="layers">
         <article class="layer">
@@ -735,14 +735,9 @@
           <p>定义每个 AI coding 任务都可能需要的工作动作：定目标、找证据、写规格、验证、评审、沉淀。</p>
         </article>
         <article class="layer">
-          <span class="layer-name">packs</span>
-          <b>能力扩展</b>
-          <p>放研究搜索、Flutter、Figma、产品数据、文档发布、agent 编排、git 工作流等可选能力。</p>
-        </article>
-        <article class="layer">
-          <span class="layer-name">overlays</span>
-          <b>项目规则</b>
-          <p>放个人、公司或具体仓库的规则：目录结构、命名约定、测试命令、业务词汇和禁止事项。</p>
+          <span class="layer-name">docs</span>
+          <b>公开说明</b>
+          <p>只放一个介绍 Markdown 和一个 HTML 视图；历史调研与私有参考资料不进开源仓库。</p>
         </article>
       </div>
     </section>

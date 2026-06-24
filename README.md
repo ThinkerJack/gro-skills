@@ -19,13 +19,12 @@ make-design  write-spec   make-plan     build-it
 fix-bug      prove-it     review-it     save-lesson
 ```
 
-系统分三层：
+当前结构：
 
 - `skills/` - 通用路径 skill，跨项目适用。
-- `packs/` - 可选能力包，例如 research、Flutter、Figma、agent-ops。
-- `overlays/` - 个人、公司或具体项目规则。
+- `docs/` - 公开介绍文档和 HTML 视图。
 
-核心规则：core 保持通用和轻量，差异放进 packs 或 overlays。
+核心规则：skill 保持通用和轻量，项目差异先放在使用方仓库里。
 
 ## 当前文档
 
