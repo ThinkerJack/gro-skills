@@ -28,6 +28,7 @@ skills_root="$repo_root/skills"
 project_root=$(CDPATH='' cd -- "$project_root" && pwd -P)
 
 created=0
+relinked=0
 unchanged=0
 skipped=0
 stale=0
@@ -47,6 +48,18 @@ sync_dir() {
       current_target=$(readlink "$destination")
       if [ "$current_target" = "$skill_dir" ]; then
         unchanged=$((unchanged + 1))
+      elif [ ! -e "$destination" ]; then
+        case "$current_target" in
+          */gro-skills/skills/"$skill_name")
+            ln -sfn "$skill_dir" "$destination"
+            echo "RELINK: $destination -> $skill_dir"
+            relinked=$((relinked + 1))
+            ;;
+          *)
+            echo "SKIP: $destination is a symlink to $current_target" >&2
+            skipped=$((skipped + 1))
+            ;;
+        esac
       else
         echo "SKIP: $destination is a symlink to $current_target" >&2
         skipped=$((skipped + 1))
@@ -81,4 +94,4 @@ if [ "$include_claude" = true ]; then
   sync_dir "$project_root/.claude/skills"
 fi
 
-echo "DONE: created=$created unchanged=$unchanged skipped=$skipped stale=$stale"
+echo "DONE: created=$created relinked=$relinked unchanged=$unchanged skipped=$skipped stale=$stale"

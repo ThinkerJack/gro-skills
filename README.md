@@ -52,8 +52,8 @@ set-goal -> write-brief -> make-design -> write-spec -> make-plan -> build-it ->
 ### 1. Clone
 
 ```bash
-mkdir -p ~/tools
-git clone https://github.com/ThinkerJack/gro-skills ~/tools/gro-skills
+mkdir -p ~/Documents/GitHub/gro
+git clone https://github.com/ThinkerJack/gro-skills ~/Documents/GitHub/gro/gro-skills
 ```
 
 如果你想维护自己的版本，再先 fork；只是使用的话不需要 fork。
@@ -66,7 +66,7 @@ git clone https://github.com/ThinkerJack/gro-skills ~/tools/gro-skills
 ./scripts/sync-project-skills.sh /absolute/path/to/project
 ```
 
-脚本默认同步 `.agents/skills/`。正确链接保持不变；项目自有的同名文件、目录或指向其他来源的链接会被跳过；指向本仓库但已失效的链接只报告 `STALE`，不自动删除。
+脚本默认同步 `.agents/skills/`。正确链接保持不变；由旧 Gro Skills 位置生成且已经断开的同名链接会自动重连；项目自有的同名文件、目录或指向其他来源的链接会被跳过；指向当前仓库中已移除 skill 的链接只报告 `STALE`，不自动删除。
 
 如果项目还使用 Claude Code，AI 必须加 `--claude`，同时同步 `.agents/skills/` 和 `.claude/skills/`：
 
@@ -74,7 +74,7 @@ git clone https://github.com/ThinkerJack/gro-skills ~/tools/gro-skills
 ./scripts/sync-project-skills.sh --claude /absolute/path/to/project
 ```
 
-项目自有 skill（例如 Gro 的 `research`）继续留在项目仓库，不回写或覆盖到 Gro Skills。AI 运行后要检查 `created`、`skipped`、`stale`，验证新增链接的 `SKILL.md` 可读，并向用户说明需要人工判断的冲突或失效链接。
+项目自有 skill（例如 Gro Research 的 `research`）继续留在项目仓库，不回写或覆盖到 Gro Skills。AI 运行后要检查 `created`、`relinked`、`skipped`、`stale`，验证新增或重连链接的 `SKILL.md` 可读，并向用户说明需要人工判断的冲突或失效链接。
 
 个人全局使用时，也可以把 skills 链到你的 AI 工具全局 skills 目录。具体路径以工具文档为准。
 
@@ -99,7 +99,7 @@ git clone https://github.com/ThinkerJack/gro-skills ~/tools/gro-skills
 更新 Gro Skills 后，由 AI 拉取并重新运行同步脚本：
 
 ```bash
-cd ~/tools/gro-skills
+cd ~/Documents/GitHub/gro/gro-skills
 git pull
 ./scripts/sync-project-skills.sh --claude /absolute/path/to/project
 ```
@@ -126,5 +126,5 @@ https://github.com/ThinkerJack/gro-skills
 
 请先 clone 或打开这个仓库，阅读 README.md，并按 README 的推荐方式把 Gro Skills 接入当前项目。
 
-由你执行接入，不要求我手动同步：从 Gro Skills 仓库运行 `./scripts/sync-project-skills.sh /当前项目绝对路径`；项目使用 Claude Code 时加 `--claude`。不要复制文件或覆盖项目自有同名 skill。检查脚本的 `created`、`skipped`、`stale`，验证新增链接的 `SKILL.md` 可读，并列出需要人工处理的冲突或失效链接。
+由你执行接入，不要求我手动同步：从 Gro Skills 仓库运行 `./scripts/sync-project-skills.sh /当前项目绝对路径`；项目使用 Claude Code 时加 `--claude`。不要复制文件或覆盖项目自有同名 skill。检查脚本的 `created`、`relinked`、`skipped`、`stale`，验证新增或重连链接的 `SKILL.md` 可读，并列出需要人工处理的冲突或失效链接。
 ```
