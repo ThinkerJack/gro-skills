@@ -10,12 +10,15 @@ disable-model-invocation: true
 
 ## 参数
 
-| 调用 | 行为 |
-|---|---|
-| `commit-it` | 只提交，不推送 |
-| `commit-it done` | 提交 → 推送；在 worktree 里则继续合并回基线分支并清理 |
+**参数由用户敲出来才成立，AI 不自行补上。** 副作用范围逐级扩大：
 
-`done` 由用户敲出来，那就是本次的推送授权，不必再问一遍。**AI 不能自己决定加上 `done`。**
+| 调用 | 副作用范围 |
+|---|---|
+| `commit-it` | 只提交到本地 |
+| `commit-it done` | 提交 → 推送**当前分支** |
+| `commit-it finish` | 在 `done` 基础上收尾：按项目约定合并回基线或开 PR，然后清理 worktree |
+
+`finish` 是唯一会动到基线分支的一档。**走哪条收尾路径由项目决定**——个人仓库直接合并、有人协作的仓库开 PR——约定写在项目的经验文件或 `AGENTS.md` 里，不在这里写死。**项目没写约定时停下来问，不要替它选。**
 
 ## 前提
 
@@ -31,26 +34,31 @@ disable-model-invocation: true
 4. 每次提交后记录 hash 和标题，复查工作区剩余
 5. 沿用仓库现有的 commit 风格——先看最近几条 log 判断，不要自创格式
 
-## `done` 的收尾
+## `done`：推送当前分支
 
 ```bash
 git push origin "$(git branch --show-current)"
-
-# 在 worktree 里才继续：
-BASE=$(cat .gro-baseline)                  # build-it worktree 写下的基线分支
-BRANCH=$(git branch --show-current)
-MAIN=$(git worktree list --porcelain | head -1 | cut -d' ' -f2)
-
-cd "$MAIN" && git checkout "$BASE"
-git merge --no-ff "$BRANCH"
-git push origin "$BASE"
-git worktree remove ".worktrees/<主题>"
-git branch -d "$BRANCH"
 ```
 
-**每一步的结果都要报告**，尤其是合并冲突——冲突时停在冲突状态等用户，不要自行选边。
+push 被拒时先看清原因再动。远端领先且改动面无交集，可以 rebase 后重推；有交集就停下说明。**任何情况都不用 force。**
 
-基线分支有保护规则、或 push 被拒时，停下说明情况，不改用 force。
+## `finish`：收尾
+
+先完成 `done`，然后读项目约定决定走哪条路：
+
+```bash
+BASE=$(cat .gro-baseline)            # build-it worktree 写下的基线分支
+BRANCH=$(git branch --show-current)
+```
+
+- **合并路径**：切回主工作区的 `$BASE`，`git merge --no-ff "$BRANCH"`，推送基线
+- **PR 路径**：`gh pr create --base "$BASE"`，保留分支待 review
+
+两条路都以清理收尾：`git worktree remove` 加删除已合并的分支；走 PR 的话，清理等 PR 合并之后。
+
+**冲突时停在冲突状态等人，不自行选边。** 基线分支有保护规则或推送被拒，说明情况后停下。
+
+每一步的结果都要报告：合并了什么、推到哪、PR 号是多少、清理了什么。
 
 ## 不提交的东西
 
