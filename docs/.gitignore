@@ -2,3 +2,9 @@
 !/.gitignore
 !/README.md
 !/gro-skills-system-v1.html
+
+# 2026-07 迭代的决策链：证据 → 诊断 → 方案 → 计划
+!/使用记录.md
+!/使用诊断.md
+!/迭代方案.md
+!/实施计划.md
