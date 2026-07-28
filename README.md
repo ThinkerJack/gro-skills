@@ -37,15 +37,35 @@ set-goal -> write-brief -> make-design -> write-spec -> make-plan -> build-it ->
 
 ## 接入方式
 
-推荐方式是：**本地 clone 一份 Gro Skills，再由 AI 运行仓库提供的同步脚本建立 skill 软链接**。已有 skill 的内容会随源仓库更新；新增 skill 由脚本补齐，失效链接由脚本报告给 AI 处理。不要复制文件。
+推荐方式是：**本地 clone 一份 Gro Skills，再运行 `scripts/sync.py` 把 skill 生成到项目里**。产出的是真实文件，可以提交进项目仓库——同事 clone 即用，不需要各自安装 Gro Skills。
+
+> 2026-07 起改用生成式同步，取代原来的软链方案。软链存的是绝对路径，提交后在别人机器上是死链；生成式还多出一层项目适配能力（见下）。旧的 `scripts/sync-project-skills.sh` 已废弃。
+
+每个 skill 有两种模式，在项目根的 `.gro-skills.json` 里声明：
+
+| 模式 | 行为 | 用于 |
+|---|---|---|
+| `mirror` | 整目录逐字覆盖 | 纯通用纪律，项目无需干预 |
+| `adapter` | 项目保留 `SKILL.md` 薄壳和自己的 `references/*.md`，只覆盖生成的 `references/common.md` 和上游资源 | 需要项目落地细节：文档路径、验证命令、技术栈约定 |
+
+adapter 的目录形态：
+
+```
+.agents/skills/build-it/
+├── SKILL.md                     项目薄壳：读 common → 读项目经验 → 冲突时以就近 AGENTS.md 为准
+└── references/
+    ├── common.md                Gro Skills 原文（生成，带 blob 追溯，勿改）
+    └── <repo>-delivery.md       项目经验（手写，同步时永不覆盖）
+```
 
 接入规则：
 
-1. 优先用软链引用 `gro-skills/skills`，不要复制一份。
-2. 优先接入到 `.agents/skills`；如果当前 AI 工具只识别特定 skill 目录，再额外接入对应目录。
-3. 如果当前工具不支持可执行 skill，再把工作流写进 `AGENTS.md` / `CLAUDE.md`，作为降级方案。
-4. 接入后要验证当前 AI 是否能识别或触发这些 skills。
-5. 接入完成后说明：接入方式、文件改动、如何使用、如何更新。
+1. 用 `scripts/sync.py` 生成，不要手工复制，也不要再建软链。
+2. 默认生成到 `.agents/skills`，脚本会顺带建 `.claude/skills -> ../.agents/skills` 相对软链，Claude Code 和 Codex 同时可用。
+3. 没有项目特定经验时全部用 `mirror`；等真积累出经验，再把对应 skill 改成 `adapter` 并手写薄壳。
+4. adapter 的 `SKILL.md` 必须人写，脚本拒绝代为生成。
+5. 如果当前工具不支持可执行 skill，再把工作流写进 `AGENTS.md` / `CLAUDE.md`，作为降级方案。
+6. 接入后要验证当前 AI 是否能识别或触发这些 skills。
 
 不要把 `docs/references` 或本地草稿资料接入项目；也不要把项目私有规则写回 Gro Skills，项目规则应留在使用方仓库。
 
@@ -60,23 +80,41 @@ git clone https://github.com/ThinkerJack/gro-skills ~/Documents/GitHub/gro/gro-s
 
 ### 2. 接入项目
 
-让 AI 从 Gro Skills 仓库运行：
+在项目根写一份 `.gro-skills.json`：
 
-```bash
-./scripts/sync-project-skills.sh /absolute/path/to/project
+```json
+{
+  "destination": ".agents/skills",
+  "claudeLink": true,
+  "mirror": ["find-proof", "fix-bug", "poke-holes", "set-goal", "write-brief"],
+  "adapter": ["build-it", "prove-it", "write-spec"]
+}
 ```
 
-脚本默认同步 `.agents/skills/`。正确链接保持不变；由旧 Gro Skills 位置生成且已经断开的同名链接会自动重连；项目自有的同名文件、目录或指向其他来源的链接会被跳过；指向当前仓库中已移除 skill 的链接只报告 `STALE`，不自动删除。
-
-如果项目还使用 Claude Code，AI 必须加 `--claude`，同时同步 `.agents/skills/` 和 `.claude/skills/`：
+然后从 Gro Skills 仓库运行：
 
 ```bash
-./scripts/sync-project-skills.sh --claude /absolute/path/to/project
+python3 scripts/sync.py /absolute/path/to/project           # 同步
+python3 scripts/sync.py /absolute/path/to/project --check    # 只检查，有漂移则非零退出
 ```
 
-项目自有 skill（例如 Gro Research 的 `research`）继续留在项目仓库，不回写或覆盖到 Gro Skills。AI 运行后要检查 `created`、`relinked`、`skipped`、`stale`，验证新增或重连链接的 `SKILL.md` 可读，并向用户说明需要人工判断的冲突或失效链接。
+脚本会拒绝在 Gro Skills 有未提交 skill 改动时同步——否则 manifest 记录的 `sourceBlob`（工作区）和 `sourceRevision`（HEAD）会自相矛盾，把半成品散播到所有下游。确需如此时加 `--allow-dirty`。
 
-个人全局使用时，也可以把 skills 链到你的 AI 工具全局 skills 目录。具体路径以工具文档为准。
+同步产物包含 `.gro-skills-sync.json`，记录上游 revision 和每个 skill 的 blob，用于精确定位漂移。
+
+项目自有 skill（例如 Gro Research 的 `research`）不写进名单即可，脚本不会碰它。
+
+### 3. 防漂移
+
+生成式的代价是更新不自动。装上 hook，并定期全量检查：
+
+```bash
+./scripts/install-hooks.sh      # gro-skills 改动 skills/ 后提醒同步下游
+./scripts/check-all.sh          # 扫描所有下游仓库，报告漂移
+./scripts/check-all.sh --sync   # 直接修复
+```
+
+这一步不要省：改用生成式之前，曾有仓库静默漂移两周（`poke-holes` 停在旧版），原因就是没有任何东西会主动跑 `--check`。
 
 ### 3. 验证
 
@@ -96,17 +134,15 @@ git clone https://github.com/ThinkerJack/gro-skills ~/Documents/GitHub/gro/gro-s
 
 ### 4. 更新
 
-更新 Gro Skills 后，由 AI 拉取并重新运行同步脚本：
-
 ```bash
 cd ~/Documents/GitHub/gro/gro-skills
 git pull
-./scripts/sync-project-skills.sh --claude /absolute/path/to/project
+./scripts/check-all.sh --sync      # 一次性把所有下游仓库带到最新
 ```
 
-`git pull` 会立即更新已有链接指向的内容，但不会自行创建新入口；因此 AI 不能只执行 `git pull`。`STALE` 链接可能涉及项目选择，AI 只能说明并在获得授权后删除。
+`git pull` 只更新 Gro Skills 本身，下游是生成产物、不会自动跟随——这正是要装 hook 和跑 `check-all.sh` 的原因。
 
-不推荐把 `skills/` 复制到每个项目里；复制后需要手动同步，容易漂移。
+adapter 的项目经验文件（`references/` 下非 `common.md` 的部分）在任何情况下都不会被覆盖。
 
 ### 5. 降级方案
 
@@ -126,5 +162,12 @@ https://github.com/ThinkerJack/gro-skills
 
 请先 clone 或打开这个仓库，阅读 README.md，并按 README 的推荐方式把 Gro Skills 接入当前项目。
 
-由你执行接入，不要求我手动同步：从 Gro Skills 仓库运行 `./scripts/sync-project-skills.sh /当前项目绝对路径`；项目使用 Claude Code 时加 `--claude`。不要复制文件或覆盖项目自有同名 skill。检查脚本的 `created`、`relinked`、`skipped`、`stale`，验证新增或重连链接的 `SKILL.md` 可读，并列出需要人工处理的冲突或失效链接。
+由你执行接入，不要求我手动操作：
+
+1. 在我的项目根写 `.gro-skills.json`。没有项目特定经验时全部列进 `mirror`。
+2. 从 Gro Skills 仓库运行 `python3 scripts/sync.py /当前项目绝对路径`。
+3. 用 `--check` 复验，确认输出 `in sync`。
+4. 告诉我生成了哪些文件、要不要提交进项目仓库、以后怎么更新。
+
+不要手工复制文件，不要建软链，不要覆盖项目自有的同名 skill。
 ```

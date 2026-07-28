@@ -1,0 +1,10 @@
+#!/bin/sh
+# Remind to re-sync downstream repos after skills/ changes.
+# Install: scripts/install-hooks.sh
+changed=$(git diff-tree --no-commit-id --name-only -r HEAD -- skills | wc -l | tr -d ' ')
+[ "$changed" -eq 0 ] && exit 0
+repo_root=$(git rev-parse --show-toplevel)
+echo
+echo "gro-skills: $changed file(s) changed under skills/ — downstream repos are now stale."
+echo "  check:  $repo_root/scripts/check-all.sh"
+echo "  fix:    $repo_root/scripts/check-all.sh --sync"
