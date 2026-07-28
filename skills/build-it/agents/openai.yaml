@@ -1,0 +1,5 @@
+interface:
+  display_name: "开始做"
+  short_description: "按规格或计划落地；支持 worktree 与 auto"
+policy:
+  allow_implicit_invocation: false

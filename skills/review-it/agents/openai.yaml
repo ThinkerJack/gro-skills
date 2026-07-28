@@ -1,0 +1,5 @@
+interface:
+  display_name: "做评审"
+  short_description: "交付前评审 diff 与证据"
+policy:
+  allow_implicit_invocation: false

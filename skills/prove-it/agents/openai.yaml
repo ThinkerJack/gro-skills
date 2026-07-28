@@ -1,0 +1,5 @@
+interface:
+  display_name: "验证它"
+  short_description: "跑验证，给出四态结论"
+policy:
+  allow_implicit_invocation: false

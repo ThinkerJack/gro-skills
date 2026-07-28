@@ -1,6 +1,7 @@
 ---
 name: commit-it
 description: "仅当用户明确要求提交时，把已验证的改动按语义分组提交。触发词：提交代码/提交一下/打提交/commit/commit it。参数 done 表示提交并推送，在 worktree 里则合并回基线分支。"
+disable-model-invocation: true
 ---
 
 # 提交代码 commit-it

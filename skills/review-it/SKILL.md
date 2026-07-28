@@ -1,6 +1,7 @@
 ---
 name: review-it
 description: "交付前评审已完成的 diff：规格覆盖、验证证据和剩余风险。触发词：检查 diff/最终评审/准备交付/交接说明/review it/final review/handoff。"
+disable-model-invocation: true
 ---
 
 # 做评审 review-it

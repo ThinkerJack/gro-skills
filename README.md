@@ -4,24 +4,26 @@ AI coding skills for clearer plans, safer changes, and verified delivery.
 
 Gro Skills 是一组给 AI 编程用的阶段契约。它不教模型通用思考方法，而是说清你的工作流中每个阶段何时进入、要交付什么、如何证明完成，以及什么时候必须停止。
 
-12 个 skill 分两层。**控制点由你敲出来**，纪律层在合适的时候自己出现——这个划分是关键：自动跑完的流程你感知不到，也就谈不上控制。
+12 个 skill 分两层。**动作由你敲出来，纪律自动生效**——这个划分是关键：自动跑完的流程你感知不到，也就谈不上控制。
+
+只有三个保持自动：它们要么需要被别的 skill 调用（`interviewing`、`find-proof`），要么触发时机由现象决定而非由你决定（`fix-bug`）。
 
 ```text
 控制点（手动触发，不占自动路由）
   make-sketch   一屏内确认方向
   write-spec    把多个信息源固化成规格真源
   make-plan     把测试和验收绑进完成定义
+  build-it      按计划落地；参数 worktree / auto
+  prove-it      四态结论：通过 / 失败 / 部分验证 / 阻塞
+  review-it     交付前评审 diff
+  commit-it     分组提交；参数 done 表示推送并合并回基线
   sharpen-it    反驳、补角度、追问、换维度
   save-lesson   沉淀经验，并记录 skill 自身的摩擦
 
-纪律层（自动触发）
+自动触发（模型自行判断时机，也可被其他 skill 调用）
   interviewing  追问到共识
   find-proof    为决策取证
-  build-it      按计划落地
-  prove-it      四态结论：通过 / 失败 / 部分验证 / 阻塞
   fix-bug       定位根因再修
-  review-it     交付前评审 diff
-  commit-it     分组提交；push 需另行授权
 ```
 
 任务从当前风险对应的位置进入，跳过没有额外价值的上游产物。轻量改动直接做，不必先画草图。

@@ -1,6 +1,7 @@
 ---
 name: prove-it
 description: "跑验证并给出四态结论，用本轮新鲜证据支持完成声明。触发词：验证改动/跑测试/QA/自测/验收/prove it/verify。要求对方案挑毛病、辩一辩或启发思路用 sharpen-it。"
+disable-model-invocation: true
 ---
 
 # 验证它 prove-it

@@ -1,0 +1,5 @@
+interface:
+  display_name: "提交代码"
+  short_description: "分组提交；done 表示推送并合并回基线"
+policy:
+  allow_implicit_invocation: false
