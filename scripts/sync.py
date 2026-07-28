@@ -57,11 +57,20 @@ def git_hash(path: Path) -> str:
     return result.stdout.strip()
 
 
-def git_revision(repo: Path) -> str:
+def git_revision(repo: Path, subpath: str = "skills") -> str:
+    """Last commit that touched the skills tree — deliberately not the repo HEAD.
+
+    Using HEAD would mark every downstream repo as drifted whenever an unrelated
+    commit lands (docs, scripts, README), training people to ignore --check.
+    Only changes under `subpath` can actually invalidate a downstream copy.
+    """
     result = subprocess.run(
-        ["git", "-C", str(repo), "rev-parse", "HEAD"], capture_output=True, text=True
+        ["git", "-C", str(repo), "log", "-1", "--format=%H", "--", subpath],
+        capture_output=True,
+        text=True,
     )
-    return result.stdout.strip() if result.returncode == 0 else "unknown"
+    revision = result.stdout.strip()
+    return revision if result.returncode == 0 and revision else "unknown"
 
 
 def git_is_dirty(repo: Path, subpath: str = "") -> list[str]:
