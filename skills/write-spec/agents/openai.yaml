@@ -1,0 +1,5 @@
+interface:
+  display_name: "写规格"
+  short_description: "把已认可的设计写成自包含实现规格"
+policy:
+  allow_implicit_invocation: false

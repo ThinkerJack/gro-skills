@@ -1,6 +1,7 @@
 ---
 name: poke-holes
 description: "仅当用户明确要求挑毛病、反驳、压力测试或‘别顺着我’时使用；也匹配 poke holes/challenge/pressure test。普通方案评估、风险分析、review 或仅提到风险时不触发。"
+disable-model-invocation: true
 ---
 
 # 挑毛病 poke-holes

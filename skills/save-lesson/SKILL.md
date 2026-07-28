@@ -1,6 +1,7 @@
 ---
 name: save-lesson
 description: "仅当用户明确要求复盘或沉淀经验时，从当前 session 提炼可复用规则并按授权写入正确作用域。触发词：沉淀经验/记录教训/更新规则/复盘/避免重复踩坑/save lesson/retrospective。任务完成或出现失败不会自动触发。"
+disable-model-invocation: true
 ---
 
 # 记经验 save-lesson

@@ -1,0 +1,5 @@
+interface:
+  display_name: "记经验"
+  short_description: "把本 session 的可复用经验写入长期上下文"
+policy:
+  allow_implicit_invocation: false

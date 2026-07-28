@@ -1,0 +1,5 @@
+interface:
+  display_name: "拆计划"
+  short_description: "把规格拆成有序、可验证的执行基线"
+policy:
+  allow_implicit_invocation: false

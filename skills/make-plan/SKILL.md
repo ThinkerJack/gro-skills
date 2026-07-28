@@ -1,6 +1,7 @@
 ---
 name: make-plan
 description: "将已确认规格或边界清楚的重任务拆成可落库、可追踪的实现计划。触发词：拆计划/排任务/制定步骤/实现计划/检查点/make plan/task breakdown。"
+disable-model-invocation: true
 ---
 
 # 拆计划 make-plan

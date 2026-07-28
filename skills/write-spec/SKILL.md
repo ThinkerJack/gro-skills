@@ -1,6 +1,7 @@
 ---
 name: write-spec
 description: "将已认可的设计写成下一个 AI 可独立执行和验证的自包含实现规格，不拆执行步骤。触发词：写规格/可执行规格/agent spec/实现说明/测试契约/write spec/implementation spec。"
+disable-model-invocation: true
 ---
 
 # 写规格 write-spec
