@@ -1,6 +1,6 @@
 ---
 name: save-lesson
-description: "把本 session 的可复用经验写入正确的长期上下文，并记录 skill 自身的摩擦点。"
+description: "沉淀本次会改变未来行为的工程经验，以及 skill 自身的摩擦点。"
 disable-model-invocation: true
 ---
 
