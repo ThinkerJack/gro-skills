@@ -4,30 +4,37 @@ AI coding skills for clearer plans, safer changes, and verified delivery.
 
 Gro Skills 是一组给 AI 编程用的阶段契约。它不教模型通用思考方法，而是说清你的工作流中每个阶段何时进入、要交付什么、如何证明完成，以及什么时候必须停止。
 
-这 13 个 skill 不是 13 个必经步骤。任务可以从当前风险对应的任意阶段进入，跳过没有产生额外价值的上游产物。
-
-主流程：
+12 个 skill 分两层。**控制点由你敲出来**，纪律层在合适的时候自己出现——这个划分是关键：自动跑完的流程你感知不到，也就谈不上控制。
 
 ```text
-set-goal -> write-brief -> make-design -> write-spec -> make-plan -> build-it -> prove-it -> review-it
+控制点（手动触发，不占自动路由）
+  make-sketch   一屏内确认方向
+  write-spec    把多个信息源固化成规格真源
+  make-plan     把测试和验收绑进完成定义
+  sharpen-it    反驳、补角度、追问、换维度
+  save-lesson   沉淀经验，并记录 skill 自身的摩擦
+
+纪律层（自动触发）
+  interviewing  追问到共识
+  find-proof    为决策取证
+  build-it      按计划落地
+  prove-it      四态结论：通过 / 失败 / 部分验证 / 阻塞
+  fix-bug       定位根因再修
+  review-it     交付前评审 diff
+  commit-it     分组提交；push 需另行授权
 ```
 
-其他角色：
-
-```text
-跨阶段：find-proof  poke-holes（仅显式触发）
-异常分支：fix-bug
-显式动作：commit-it  save-lesson
-```
+任务从当前风险对应的位置进入，跳过没有额外价值的上游产物。轻量改动直接做，不必先画草图。
 
 当前结构：
 
-- `skills/` - 通用路径 skill，跨项目适用。
-- `docs/` - 公开介绍文档和 HTML 视图。
+- `skills/` — 通用 skill，跨项目适用
+- `skills-deprecated/` — 已降级，不进任何项目
+- `docs/` — 公开文档与迭代决策链
 
-核心规则：skills 只保留目标、产物、完成证据、权限和防漂移边界；具体项目规则留在使用方仓库。模型大版本升级后，用固定 eval 重新判断哪些指令仍必要、已冗余或可能有害。
+核心规则：skill 只保留目标、产物、完成证据、权限和防漂移边界；具体项目规则留在使用方仓库的 `references/` 里。写指令前先问一句——**这句话相对模型默认行为改变了什么？** 没有就删掉。
 
-关键工程路径使用“关键路径验证”：按风险定义证据层级、状态准备、清理动作和
+关键工程路径使用「关键路径验证」：按风险定义证据层级、状态准备、清理动作和
 `通过 / 失败 / 部分验证 / 阻塞`结论。
 
 ## 当前文档
@@ -86,8 +93,8 @@ git clone https://github.com/ThinkerJack/gro-skills ~/Documents/GitHub/gro/gro-s
 {
   "destination": ".agents/skills",
   "claudeLink": true,
-  "mirror": ["find-proof", "fix-bug", "poke-holes", "set-goal", "write-brief"],
-  "adapter": ["build-it", "prove-it", "write-spec"]
+  "mirror": ["find-proof", "fix-bug", "interviewing", "sharpen-it"],
+  "adapter": ["build-it", "make-sketch", "prove-it", "write-spec"]
 }
 ```
 
@@ -116,7 +123,7 @@ python3 scripts/sync.py /absolute/path/to/project --check    # 只检查，有�
 
 这一步不要省：改用生成式之前，曾有仓库静默漂移两周（`poke-holes` 停在旧版），原因就是没有任何东西会主动跑 `--check`。
 
-### 3. 验证
+### 4. 验证
 
 接入后，让你的 AI 做一次检查：
 
@@ -127,12 +134,12 @@ python3 scripts/sync.py /absolute/path/to/project --check    # 只检查，有�
 也可以直接测试一个 skill：
 
 ```text
-请使用 set-goal 帮我澄清这个需求：我要给项目加一个新功能。
+请用 make-sketch 帮我理一下：我要给项目加一个新功能。
 ```
 
-如果 AI 能按“定目标、成功标准、未知项、下一步”的结构回答，说明接入基本可用。
+如果 AI 能给出「问题 / 改动面 / 2-3 个方案加推荐 / 非目标 / 未知」的一屏草图，说明接入可用。
 
-### 4. 更新
+### 5. 更新
 
 ```bash
 cd ~/Documents/GitHub/gro/gro-skills
@@ -144,7 +151,7 @@ git pull
 
 adapter 的项目经验文件（`references/` 下非 `common.md` 的部分）在任何情况下都不会被覆盖。
 
-### 5. 降级方案
+### 6. 降级方案
 
 如果当前 AI 工具不支持可执行 skill，可以把 Gro Skills 的工作路径写进项目的 `AGENTS.md` / `CLAUDE.md` / AI 使用说明里。
 

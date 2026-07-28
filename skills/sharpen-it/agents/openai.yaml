@@ -1,0 +1,5 @@
+interface:
+  display_name: "磨想法"
+  short_description: "反驳、补角度、追问、换维度，把想法磨锐"
+policy:
+  allow_implicit_invocation: false

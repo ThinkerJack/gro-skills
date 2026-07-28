@@ -1,11 +1,46 @@
 ---
 name: build-it
-description: "按已确认的规格或计划落地改动。触发词：开始做/按计划实现/执行计划/落地任务/build it/implement/execute plan。"
+description: "按已确认的规格或计划落地改动。触发词：开始做/按计划实现/执行计划/落地任务/build it/implement/execute plan。支持参数 worktree（隔离执行）和 auto（做完自动验证提交）。"
 ---
 
 # 开始做 build-it
 
 按计划逐步实现，每步做完就运行该步的验证、读完整输出，再进下一步。
+
+## 参数
+
+用户可以在调用时带参数，**参数由用户敲出来，就是那次授权**：
+
+| 参数 | 行为 |
+|---|---|
+| 无 | 在当前工作区实现，不提交 |
+| `worktree` | 先建 worktree，在隔离副本里实现 |
+| `auto` | 实现 → 跑 `prove-it` → **通过才**提交并推送 |
+| `worktree auto` | 两者组合 |
+
+## worktree 模式
+
+规格和计划留在主分支，实现在隔离副本里进行，主工作区不受影响。
+
+```bash
+BASE=$(git branch --show-current)          # 记下基线分支
+git worktree add .worktrees/<主题> -b <分支名>
+echo "$BASE" > .worktrees/<主题>/.gro-baseline
+cd .worktrees/<主题>
+```
+
+- 位置固定 `.worktrees/<主题>`，分支名从规格或计划的主题推导
+- `.worktrees/` 和 `.gro-baseline` 应在 `.gitignore` 里；不在就先加
+- **基线分支名写进 `.gro-baseline`**——`commit-it done` 靠它知道合并回哪
+- worktree 与主工作区共享 `.git`，所以主分支上的规格、计划、文档在这里照样读得到
+
+实现全程在 worktree 目录内进行。汇报时说清当前在哪个 worktree、哪个分支。
+
+## auto 模式
+
+实现完成后自己接着走：跑 `prove-it` → 结论是`通过`才转 `commit-it done`。
+
+**结论是`失败`、`部分验证`或`阻塞`时停下报告，不提交。** 这一条没有例外——auto 授权的是「验证通过后自动提交」，不是「跳过验证直接提交」。
 
 ## 冲突时停下来
 

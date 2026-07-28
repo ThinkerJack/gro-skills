@@ -1,5 +1,0 @@
-interface:
-  display_name: "挑毛病"
-  short_description: "对指定主张做对抗性审视"
-policy:
-  allow_implicit_invocation: false
