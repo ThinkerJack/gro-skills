@@ -3,9 +3,20 @@
 !/README.md
 !/gro-skills-system-v1.html
 
+# 只公开分类说明，具体参考和归档内容保持本地
+!/references/
+/references/*
+!/references/README.md
+!/archive/
+/archive/*
+!/archive/README.md
+
 # 2026-07 迭代的决策链：证据 → 诊断 → 方案 → 计划
-!/使用记录.md
-!/使用诊断.md
-!/迭代方案.md
-!/实施计划.md
-!/提示词调研.md
+!/decisions/
+!/decisions/README.md
+!/decisions/2026-07/
+!/decisions/2026-07/使用记录.md
+!/decisions/2026-07/使用诊断.md
+!/decisions/2026-07/迭代方案.md
+!/decisions/2026-07/实施计划.md
+!/decisions/2026-07/提示词调研.md

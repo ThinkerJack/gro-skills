@@ -1,9 +1,9 @@
 ---
-name: interviewing
+name: clarify
 description: "通过连续追问把模糊的想法、目标或方案问清楚。用户说想不清楚、要理一理、帮我问问题时使用；其他 skill 需要与用户对齐时也调用它。"
 ---
 
-# 追问 interviewing
+# 追问 clarify
 
 就这件事持续追问，直到双方的理解一致为止。
 

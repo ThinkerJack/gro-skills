@@ -36,7 +36,10 @@ Gro Skills 是一组 AI 编程阶段契约。它把用户自己的工作流表�
 | Path | 放什么 | 不放什么 |
 |---|---|---|
 | `skills/` | 通用路径、证据边界、阶段责任 | 具体技术栈命令、公司流程、项目路径 |
-| `docs/` | 公开介绍文档和 HTML 视图 | 历史调研、私有参考资料 |
+| `docs/` | 当前公开介绍和 HTML 视图 | 过程性文档 |
+| `docs/decisions/` | 按时间归档的证据、诊断、方案和实施计划 | 外部原始素材 |
+| `docs/references/` | 本地系统参考、外部素材和参考图 | 当前行为契约 |
+| `docs/archive/` | 已被取代的旧计划、备份和旧版视觉稿 | 当前计划 |
 
 ## 工程验证契约
 
@@ -48,6 +51,9 @@ Gro Skills 是一组 AI 编程阶段契约。它把用户自己的工作流表�
 
 主力模型或 skill 触发机制大版本变更时，用固定的有 skill / 无 skill 对照用例，重新审计指令是仍必要、已冗余还是可能有害。
 
-## Public Docs
+## 文档地图
 
-- [Gro Skills System Map](./gro-skills-system-v1.html)
+- 当前公开文档：[Gro Skills System Map](./gro-skills-system-v1.html)
+- 2026-07 决策链：[使用记录](./decisions/2026-07/使用记录.md) → [使用诊断](./decisions/2026-07/使用诊断.md) → [提示词调研](./decisions/2026-07/提示词调研.md) → [迭代方案](./decisions/2026-07/迭代方案.md) → [实施计划](./decisions/2026-07/实施计划.md)
+- 本地参考：[`references/`](./references/README.md)
+- 历史归档：[`archive/`](./archive/README.md)

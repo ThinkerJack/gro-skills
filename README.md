@@ -6,7 +6,7 @@ Gro Skills 是一组给 AI 编程用的阶段契约。它不教模型通用思�
 
 12 个 skill 分两层。**动作由你敲出来，纪律自动生效**——这个划分是关键：自动跑完的流程你感知不到，也就谈不上控制。
 
-只有三个保持自动：它们要么需要被别的 skill 调用（`interviewing`、`find-proof`），要么触发时机由现象决定而非由你决定（`fix-bug`）。
+只有三个保持自动：它们要么需要被别的 skill 调用（`clarify`、`find-proof`），要么触发时机由现象决定而非由你决定（`fix-bug`）。
 
 ```text
 控制点（手动触发，不占自动路由）
@@ -21,7 +21,7 @@ Gro Skills 是一组给 AI 编程用的阶段契约。它不教模型通用思�
   save-lesson   沉淀经验，并记录 skill 自身的摩擦
 
 自动触发（模型自行判断时机，也可被其他 skill 调用）
-  interviewing  追问到共识
+  clarify       追问到共识
   find-proof    为决策取证
   fix-bug       定位根因再修
 ```
@@ -32,7 +32,7 @@ Gro Skills 是一组给 AI 编程用的阶段契约。它不教模型通用思�
 
 - `skills/` — 通用 skill，跨项目适用
 - `skills-deprecated/` — 已降级，不进任何项目
-- `docs/` — 公开文档与迭代决策链
+- `docs/` — 公开文档、按月份归档的迭代决策链、参考资料与历史备份
 
 核心规则：skill 只保留目标、产物、完成证据、权限和防漂移边界；具体项目规则留在使用方仓库的 `references/` 里。写指令前先问一句——**这句话相对模型默认行为改变了什么？** 没有就删掉。
 
@@ -95,7 +95,7 @@ git clone https://github.com/ThinkerJack/gro-skills ~/Documents/GitHub/gro/gro-s
 {
   "destination": ".agents/skills",
   "claudeLink": true,
-  "mirror": ["find-proof", "fix-bug", "interviewing", "sharpen-it"],
+  "mirror": ["find-proof", "fix-bug", "clarify", "sharpen-it"],
   "adapter": ["build-it", "make-sketch", "prove-it", "write-spec"]
 }
 ```

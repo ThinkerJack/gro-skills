@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 规格的首要职能是**把散落在多处的信息固化成一个真源**：调研结论、设计稿、接口文档、现有代码、用户口述的约束。做完之后，实现者不必回头重开那些原始资料，几个月后也能回答「这个决定当时基于什么」。
 
-需要与用户对齐时调用 `interviewing`；缺关键事实时转 `find-proof`。产出格式与示例见 [SPEC-FORMAT.md](./SPEC-FORMAT.md)。
+需要与用户对齐时调用 `clarify`；缺关键事实时转 `find-proof`。产出格式与示例见 [SPEC-FORMAT.md](./SPEC-FORMAT.md)。
 
 ## 固化信息源的四条纪律
 
