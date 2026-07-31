@@ -41,6 +41,8 @@ git push origin "$(git branch --show-current)"
 
 `finish` 是唯一会动到基线分支的一档。先完成 `done`，基线分支名从 `.gro-baseline` 读（`build-it worktree` 写下的）。**走合并还是 PR 由项目决定**——约定写在项目的经验文件或 `AGENTS.md` 里，不在这里写死；**项目没写约定时停下来问，不要替它选。**
 
+动基线前要有本次改动的 `review-it` 交接物，并先把评审决策卡给人看。没有评审结果，或结论仍是「继续修 / 回设计 / 需人工决定」时，不进入合并路径。
+
 - **合并路径**：切回主工作区的基线分支，`git merge --no-ff <分支>`，推送，然后 `git worktree remove` 并删掉已合并的分支
 - **PR 路径**：`gh pr create --base <基线>`，保留分支待 review，清理等 PR 合并之后
 
