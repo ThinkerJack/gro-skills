@@ -43,4 +43,4 @@ description: "定位具体失败的根因并做最小修复，再用原失败路
 
 ## 交接
 
-复现不了：说清需要什么证据后停下。失败暴露了需求或设计缺口：回到 `make-sketch` 或 `write-spec`。修复完成：转 `prove-it` 做完整验收。
+复现不了：说清需要什么证据后停下。失败暴露了需求或设计缺口：回到 `sketch-it`、`design-it` 或 `write-spec`。修复完成：转 `prove-it` 做完整验收。

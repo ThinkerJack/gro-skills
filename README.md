@@ -4,24 +4,25 @@ AI coding skills for clearer plans, safer changes, and verified delivery.
 
 Gro Skills 是一组给 AI 编程用的阶段契约。它不教模型通用思考方法，而是说清你的工作流中每个阶段何时进入、要交付什么、如何证明完成，以及什么时候必须停止。
 
-12 个 skill 分两层。**动作由你敲出来，纪律自动生效**——这个划分是关键：自动跑完的流程你感知不到，也就谈不上控制。
+13 个 skill 分两层。**动作由你敲出来，纪律自动生效**——这个划分是关键：自动跑完的流程你感知不到，也就谈不上控制。
 
-只有三个保持自动：它们要么需要被别的 skill 调用（`clarify`、`find-proof`），要么触发时机由现象决定而非由你决定（`fix-bug`）。
+只有三个保持自动：它们要么需要被别的 skill 调用（`ask-it`、`find-proof`），要么触发时机由现象决定而非由你决定（`fix-bug`）。
 
 ```text
 控制点（手动触发，不占自动路由）
-  make-sketch   一屏内确认方向
+  sketch-it     一屏内确认方向
+  design-it     定技术方案与选型：推荐方案、否掉的替代、关键假设
   write-spec    把多个信息源固化成经人确认的规格、状态矩阵与流程契约
   make-plan     分开点状检查、完整流程验收与人工抽查
-  build-it      按计划落地；参数 worktree / auto
+  build-it      按计划落地；参数 worktree / ship
   prove-it      执行点状/流程验收，整理人审证据并给四态结论
   review-it     交付前评审 diff、流程覆盖与人审证据
-  commit-it     分组提交；参数 done 表示推送并合并回基线
+  commit-it     分组提交；参数 done 推送，finish 合并或开 PR
   sharpen-it    反驳、补角度、追问、换维度
   save-lesson   沉淀经验，并记录 skill 自身的摩擦
 
 自动触发（模型自行判断时机，也可被其他 skill 调用）
-  clarify       追问到共识
+  ask-it        追问到共识
   find-proof    为决策取证
   fix-bug       定位根因再修
 ```
@@ -99,8 +100,8 @@ git clone https://github.com/ThinkerJack/gro-skills ~/Documents/GitHub/gro/gro-s
 {
   "destination": ".agents/skills",
   "claudeLink": true,
-  "mirror": ["find-proof", "fix-bug", "clarify", "sharpen-it"],
-  "adapter": ["build-it", "make-sketch", "prove-it", "write-spec"]
+  "mirror": ["find-proof", "fix-bug", "ask-it", "sharpen-it"],
+  "adapter": ["build-it", "sketch-it", "prove-it", "write-spec"]
 }
 ```
 
@@ -140,7 +141,7 @@ python3 scripts/sync.py /absolute/path/to/project --check    # 只检查，有�
 也可以直接测试一个 skill：
 
 ```text
-请用 make-sketch 帮我理一下：我要给项目加一个新功能。
+请用 sketch-it 帮我理一下：我要给项目加一个新功能。
 ```
 
 如果 AI 能给出「问题 / 改动面 / 2-3 个方案加推荐 / 非目标 / 未知」的一屏草图，说明接入可用。

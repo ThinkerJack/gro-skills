@@ -1,10 +1,10 @@
 ---
-name: make-sketch
+name: sketch-it
 description: "在投入设计或实现前，用一屏内的草图确认方向。"
 disable-model-invocation: true
 ---
 
-# 画草图 make-sketch
+# 画草图 sketch-it
 
 先摸清仓库现状，再输出**一屏之内**的草图，让人在三十秒内判断方向对不对。
 
@@ -24,13 +24,14 @@ disable-model-invocation: true
 
 事实自己查——读代码、翻 git log、跑命令。只把**取舍**摆到用户面前。
 
-字段名、函数签名、测试计划、执行顺序都不进草图；那是 `write-spec` 和 `make-plan` 的位置。
+字段名、函数签名、测试计划、执行顺序都不进草图；那是 `design-it`、`write-spec` 和 `make-plan` 的位置。
 
 ## 交接
 
 方向认可后按分量选：
 
 - 边界清楚的单点改动 → 直接实现
+- **方案不止一个合理解，或要定架构、模块边界、技术选型 → `design-it`**
 - 多信息源、跨模块、需要追溯 → `write-spec`
 - 已有规格或范围明确的重任务 → `make-plan`
 
