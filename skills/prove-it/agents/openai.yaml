@@ -1,5 +1,6 @@
 interface:
   display_name: "验证它"
-  short_description: "跑验证，给出四态结论"
+  short_description: "运行点状与完整流程验证，整理人工抽查证据并给出四态结论"
+  default_prompt: "使用 $prove-it 验证这次改动，并整理供我抽查的证据。"
 policy:
   allow_implicit_invocation: false

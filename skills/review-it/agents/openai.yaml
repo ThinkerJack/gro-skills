@@ -1,5 +1,6 @@
 interface:
   display_name: "做评审"
-  short_description: "交付前评审 diff 与证据"
+  short_description: "评审 diff、状态与流程覆盖、人工抽查证据和剩余风险"
+  default_prompt: "使用 $review-it 评审这个已完成 diff 的交付风险与证据缺口。"
 policy:
   allow_implicit_invocation: false
